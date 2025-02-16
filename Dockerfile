@@ -1,13 +1,11 @@
-FROM golang:1.23.6-alpine
+FROM golang:1.23.6
 
-RUN apk add --no-cache make git
+RUN apt-get update && apt-get install -y \
+    gcc-multilib \
+    g++-multilib \
+    crossbuild-essential-armhf \
+    crossbuild-essential-arm64 \
+    && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /build
-
-RUN git clone https://github.com/datvo2k/MOTD.git
-
-RUN go mod download
-RUN chmod +x /build/motd.sh
-RUN /bin/sh /build/motd.sh
-
-CMD ["/bin/sh", "-c", "bash"]
+ENV GOOS=linux
+ENV GOARCH=amd64

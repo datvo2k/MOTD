@@ -11,13 +11,13 @@ import (
 )
 
 type GoInfoObject struct {
-	GoOS string
-	Kernel string
-	Core string
-	Platform string
-	OS string
-	Hostname string
-	CPUs int
+	GoOS 		string
+	Kernel 		string
+	Core 		string
+	Platform 	string
+	OS 			string
+	Hostname 	string
+	CPUs 		int
 }
 
 func (gi *GoInfoObject) VarDump() {

@@ -69,4 +69,11 @@ func main() {
 
 	gi, _ := GetInfo()
 	gi.VarDump()
+
+	// Print memory usage
+	memInfo := MemInfo{}
+	memInfo.Update()
+	goMemInfo := ConvertToStruct(&memInfo)
+	fmt.Println("Memory Info: ", goMemInfo.MemTotal, "Gb")
+	fmt.Println("Memory Used: ", goMemInfo.MemUsed, "Gb")
 }
