@@ -23,12 +23,6 @@ fi
 # Copy binary to /usr/bin
 echo "Copying binary to /usr/bin..."
 cp motd /usr/bin/
+cp config.json /etc/
 chmod 755 /usr/bin/motd
 
-# Add to /etc/profile if not already present
-if ! grep -q "motd" /etc/profile; then
-    echo "Adding motd to /etc/profile..."
-    echo "/usr/bin/motd" >> /etc/profile
-fi
-
-echo "Installation complete"

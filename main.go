@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"path/filepath"
     "regexp"
+	"flag"
 
 	"github.com/common-nighthawk/go-figure"
 )
@@ -51,12 +52,14 @@ func readConfigFile(filePath string) (*Config, error) {
 
 
 func main() {
-	if len(os.Args) < 2 {
-		log.Fatal("Please provide a file path as an argument")
-	}
-	filePath := os.Args[1]
+	configPath := flag.String("config", "", "path to config file (e.g., config.json)")
+	flag.Parse()
 
-	config, err := readConfigFile(filePath)
+	if *configPath == "" {
+		log.Fatal("Please provide a config file path using --config flag")
+	}
+
+	config, err := readConfigFile(*configPath)
 	if err != nil {
 		log.Fatalf("error reading config file: %v", err)
 	}
