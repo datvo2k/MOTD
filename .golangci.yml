@@ -1,0 +1,45 @@
+linters:
+  enable:
+    - bodyclose
+    - copyloopvar   # Detects places where loop variables are copied.
+    - depguard
+    - dogsled
+    - dupword       # Detects duplicate words.
+    - durationcheck
+    - errchkjson
+    - gocritic      # Metalinter; detects bugs, performance, and styling issues.
+    - gocyclo
+    - gofumpt       # Detects whether code was gofumpt-ed.
+    - goimports
+    - gosec         # Detects security problems.
+    - gosimple
+    - govet
+    - ineffassign
+    - lll
+    - misspell      # Detects commonly misspelled English words in comments.
+    - nakedret
+    - nilerr        # Detects code that returns nil even if it checks that the error is not nil.
+    - nolintlint    # Detects ill-formed or insufficient nolint directives.
+    - perfsprint    # Detects fmt.Sprintf uses that can be replaced with a faster alternative.
+    - prealloc      # Detects slice declarations that could potentially be pre-allocated.
+    - predeclared   # Detects code that shadows one of Go's predeclared identifiers
+    - reassign
+    - revive        # Metalinter; drop-in replacement for golint.
+    - staticcheck
+    - stylecheck    # Replacement for golint
+    - tenv          # Detects using os.Setenv instead of t.Setenv.
+    - thelper       # Detects test helpers without t.Helper().
+    - tparallel     # Detects inappropriate usage of t.Parallel().
+    - typecheck
+    - unconvert     # Detects unnecessary type conversions.
+    - unparam
+    - unused
+    - usestdlibvars
+    - wastedassign
+  disable:
+    - errcheck
+run:
+  # prevent golangci-lint from deducting the go version to lint for through go.mod,
+  # which causes it to fallback to go1.17 semantics.
+  go: "1.23.6"
+  timeout: 5m
