@@ -10,6 +10,7 @@ import (
 	"flag"
 
 	"github.com/common-nighthawk/go-figure"
+	"github.com/fatih/color"
 )
 
 type Config struct {
@@ -74,6 +75,5 @@ func main() {
 	memInfo := MemInfo{}
 	memInfo.Update()
 	goMemInfo := ConvertToStruct(&memInfo)
-	fmt.Println("Memory Info: ", goMemInfo.MemTotal, "Gb")
-	fmt.Println("Memory Used: ", goMemInfo.MemUsed, "Gb")
+	color.Magenta("Memory Info: %v Gb\nMemory Available: %v Gb\n", goMemInfo.MemTotal, goMemInfo.MemAvailable)
 }
