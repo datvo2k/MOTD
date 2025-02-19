@@ -75,5 +75,13 @@ func main() {
 	memInfo := MemInfo{}
 	memInfo.Update()
 	goMemInfo := ConvertToStruct(&memInfo)
-	color.Magenta("Memory Info: %v Gb\nMemory Available: %v Gb\n", goMemInfo.MemTotal, goMemInfo.MemAvailable)
+	memTotalGB := float64(goMemInfo.MemTotal) / (1024 * 1024 * 1024)
+	memAvailableGB := float64(goMemInfo.MemAvailable) / (1024 * 1024 * 1024)
+	color.Green(fmt.Sprintf("%-20s: %.2f GB", "Memory Info", memTotalGB))
+	color.Green(fmt.Sprintf("%-20s: %.2f GB", "Memory Available", memAvailableGB))
+	uptime, err := getUptime()
+	if err != nil {
+		log.Printf("Error getting uptime: %v", err)
+	}
+	color.Green(fmt.Sprintf("%-20s: %.2f hours", "Up Time", uptime.Hours()))
 }

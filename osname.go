@@ -1,13 +1,15 @@
 package main
 
 import (
-	"fmt"
-	"runtime"
 	"bytes"
+	"fmt"
 	"os"
 	"os/exec"
+	"runtime"
 	"strings"
 	"time"
+
+	"github.com/fatih/color"
 )
 
 type GoInfoObject struct {
@@ -21,13 +23,13 @@ type GoInfoObject struct {
 }
 
 func (gi *GoInfoObject) VarDump() {
-	fmt.Println("GoOS:", gi.GoOS)
-	fmt.Println("Kernel:", gi.Kernel)
-	fmt.Println("Core:", gi.Core)
-	fmt.Println("Platform:", gi.Platform)
-	fmt.Println("OS:", gi.OS)
-	fmt.Println("Hostname:", gi.Hostname)
-	fmt.Println("CPUs:", gi.CPUs)
+	color.Green(fmt.Sprintf("%-20s: %s\n", "GoOS", gi.GoOS))
+	color.Green(fmt.Sprintf("%-20s: %s\n", "Kernel", gi.Kernel))
+	color.Green(fmt.Sprintf("%-20s: %s\n", "Core", gi.Core))
+	color.Green(fmt.Sprintf("%-20s: %s\n", "Platform", gi.Platform))
+	color.Green(fmt.Sprintf("%-20s: %s\n", "OS", gi.OS))
+	color.Green(fmt.Sprintf("%-20s: %s\n", "Hostname", gi.Hostname))
+	color.Green(fmt.Sprintf("%-20s: %d\n", "CPUs", gi.CPUs))
 }
 
 func GetInfo() (GoInfoObject, error) {
